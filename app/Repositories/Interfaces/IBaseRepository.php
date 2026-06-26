@@ -68,38 +68,38 @@ interface IBaseRepository
      */
     public function findOnlyTrashedById(int $modelId):? Model;
 
-    /**
-     * Store data
-     * 
-     * @param array $payload
-     * @return Model
-     */
-    public function create(array $payload):? Model;
-    
-    /**
-     * Update or Store data
-     * 
-     * @param array $condtionData
-     * @param array $payload
-     * @return Model
-     */
-    public function updateOrCreate(array $conditionData = null, array $payload):? Model;
+        /**
+         * Store data
+         * 
+         * @param array $payload
+         * @return Model
+         */
+        public function create(array $payload):? Model;
+        
+        /**
+         * Update or Store data
+         * 
+         * @param array $condtionData
+         * @param array $payload
+         * @return Model
+         */
+        public function updateOrCreate(array $conditionData = null, array $payload):? Model;
 
-    /** 
-     * Update existing model
-     * 
-     * @param int $modelId
-     * @param array $payload
-     * @return Model
-     */
-    public function update(int $modelId, array $payload):? Model;
-    
-    /**
-     * Delete data by id
-     * 
-     * @param int $modelId
-     * @return bool
-     */
+        /** 
+         * Update existing model
+         * 
+         * @param int $modelId
+         * @param array $payload
+         * @return Model
+         */
+        public function update(int $modelId, array $payload):? Model;
+        
+        /**
+         * Delete data by id
+         * 
+         * @param int $modelId
+         * @return bool
+         */
     public function deleteById(int $modelId): bool;
 
     /**

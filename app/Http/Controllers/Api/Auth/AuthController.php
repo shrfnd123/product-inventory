@@ -47,18 +47,18 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request): JsonResponse
     {
-        $key = $this->userService->throttleKey($request->email);
+        $key = $this->userService->throttleKey();
 
-        if (RateLimiter::tooManyAttempts($key, self::MAX_ATTEMPTS)) {
+        if ($this->userService->isTooManyFailedAttempts()) {
             return response()->json([
                 'message' => 'Too many login attempts. Try again later.'
             ], 429);
         }
 
-        $user = User::where('email', $request->email)->first();
+        $user = $this->userService->findByEmail($request->email);
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            RateLimiter::hit($key, self::DECAY_SECONDS);
+            RateLimiter::hit($key, UserService::SECONDS_LOCKED);
 
             return response()->json([
                 'message' => 'Invalid credentials'
