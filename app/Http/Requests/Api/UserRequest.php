@@ -30,57 +30,8 @@ class UserRequest extends FormRequest
     public function rules() : array
     {
         return [
-            'first_name' => 'required|min:3|max:20',
-            'middle_name' => 'present|nullable|max:20',
-            'last_name' => 'required|min:3|max:20',
-            
-            'role_id' => [
-                'required',
-                'integer',
-                'exists:roles,id'
-            ],
-
-            'branch_id' => [
-                'required',
-                'integer',
-                'exists:branches,id'
-            ],
-
-            'department_id' => [
-                'required',
-                'integer',
-                'exists:departments,id'
-            ],
-            
-            'position_id' => [
-                'required',
-                'integer',
-                'exists:positions,id'
-            ],
-
-            'gender' => [
-                'required',
-                'integer',
-                Rule::in(Gender::toArray(['getId' => true]))
-            ],
-            'birth_date' => 'required|date_format:Y-m-d',
-            'nationality' => [
-                'required',
-                'integer',
-                Rule::in(Nationalities::toArray(['getId' => true]))
-            ],
-            'religion' => [
-                'required',
-                'integer',
-                Rule::in(Religions::toArray(['getId' => true]))
-            ],
-            'marital_status' => [
-                'required',
-                'integer',
-                Rule::in(MaritalStatuses::toArray(['getId' => true]))
-            ],
+            'name' => 'required|min:3|max:20',
             'email' => 'required|email|unique:users,email',
-            'mobile_number' => 'required|numeric|unique:user_information,mobile_number|digits:11|regex:/(09)[0-9]{9}/',
             'password' => 'required|confirmed',
         ];
     }

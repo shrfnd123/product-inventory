@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-     public int $id;
+    public int $id;
 
     public string $name;
 
